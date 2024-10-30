@@ -33,10 +33,10 @@
 
                 let currentSurface = null;
 
-                function loadGuest() {
+                function loadSystem() {
                     viewer.clear();
                     $.get(
-                        "https://raw.githubusercontent.com/alexkineth/testxyz/refs/heads/main/guest.xyz",
+                        "https://raw.githubusercontent.com/alexkineth/testxyz/refs/heads/main/guest-HF/system.xyz",
                         function (data) {
                             viewer.addModel(data, "xyz");
                             viewer.setStyle(
@@ -52,7 +52,7 @@
 
                 function loadSurface(cubeFile) {
                     $.get(
-                        `https://raw.githubusercontent.com/alexkineth/testxyz/refs/heads/main/${cubeFile}`,
+                        `https://raw.githubusercontent.com/alexkineth/testxyz/refs/heads/main/guest-HF/${cubeFile}`,
                         function (cubeData) {
                             const voldata = new $3Dmol.VolumeData(
                                 cubeData,
@@ -113,16 +113,16 @@
                 window.toggleSurface = function (cubeFile) {
                     if (currentSurface === cubeFile) {
                         currentSurface = null;
-                        loadGuest();
+                        loadSystem();
                     } else {
                         currentSurface = cubeFile;
-                        loadGuest();
+                        loadSystem();
                         loadSurface(cubeFile);
                     }
                 };
 
                 $("#electrondensityBtn").click(function () {
-                    toggleSurface("electrondensity.cube");
+                    toggleSurface("electron-density.cube");
                 });
                 $("#homoBtn").click(function () {
                     toggleSurface("homo.cube");
@@ -131,7 +131,7 @@
                     toggleSurface("lumo.cube");
                 });
 
-                loadGuest();
+                loadSystem();
             });
         </script>
     </body>
